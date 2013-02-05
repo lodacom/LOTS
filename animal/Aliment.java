@@ -1,5 +1,8 @@
 package animal;
 
+/**
+ * @author Lolo
+ */
 public class Aliment {
 	public String nom;
 	

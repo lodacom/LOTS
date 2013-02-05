@@ -15,6 +15,12 @@ public class Herbivore extends Animal {
 		}
 	}
 	
+	/**
+	 * @param ali
+	 * Cette méthode mange permet d'éviter de passer par la vérification
+	 * de la méthode au-dessus si le type statique de l'aliment est bien
+	 * Herbe
+	 */
 	public void mange(Herbe ali){
 		try {
 			super.mange(ali);

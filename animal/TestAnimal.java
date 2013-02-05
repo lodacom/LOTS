@@ -1,5 +1,10 @@
 package animal;
 
+/**
+ * @author Lolo
+ * @version 1.0
+ * Fait sous Eclipse Juno, OS: Mac OS X
+ */
 public class TestAnimal {
 
 	/**
