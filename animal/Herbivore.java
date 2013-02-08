@@ -31,7 +31,7 @@ public class Herbivore extends Animal {
 	}
 	
 	public String toString(){
-		return nom;
+		return super.nom;
 	}
 
 }
