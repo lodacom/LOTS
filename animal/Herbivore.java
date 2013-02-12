@@ -9,7 +9,7 @@ public class Herbivore extends Animal {
 	
 	public void mange(Aliment ali) throws AlimentException{
 		if (ali instanceof Herbe){
-			super.mange(ali);
+			super.mange((Herbe)ali);
 		}else{
 			throw new AlimentException(this,ali);
 		}

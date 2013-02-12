@@ -24,7 +24,15 @@ public class TestAnimal {
 		Herbivore her=new Herbivore("Vache");
 		Herbe mach=new Herbe("herbe");
 		her.mange(mach);
-
+		
+		Animal ani2=new Herbivore("Vache");
+		Aliment ali2=new Herbe("herbe");
+		try {
+			ani2.mange(ali2);
+		} catch (AlimentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
