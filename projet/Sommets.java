@@ -1,6 +1,6 @@
 package projet;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * @author Lolo
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Sommets {
 	public String nom_sommet;
 	public Graphes sommet_dans;
-	public ArrayList<Sommets> somm_incidents;
+	public HashSet<Aretes> aret_incidents;
 	
 	/**
 	 * Constructeur de base. On donne un nom
@@ -26,8 +26,8 @@ public class Sommets {
 		setSommet_dans(p_sommet_dans);
 	}
 
-	public void addSommet(Sommets p_somm){
-		somm_incidents.add(p_somm);
+	public void addArete(Aretes p_aret){
+		aret_incidents.add(p_aret);
 	}
 	
 	public void deleteSommet(){

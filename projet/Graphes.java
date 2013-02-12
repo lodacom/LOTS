@@ -78,11 +78,12 @@ public class Graphes {
 	 * @param p_arete
 	 * @throws ChimereException 
 	 */
-	public void addArete(Aretes p_arete) throws ChimereException{
+	public void addArete(Aretes p_arete,Sommets p_somm1,Sommets p_somm2) throws ChimereException{
 		/*
 		 * (nbr-sommets*(nbr-sommets-1))/2=nbr-aretes
 		 */
 		aretes.add(p_arete);
+		
 	}
 	
 	/**

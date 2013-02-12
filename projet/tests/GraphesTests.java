@@ -22,34 +22,36 @@ import projet.exceptions.ChimereException;
 public class GraphesTests {
 
 	public static Graphes grape=new Graphes("essai");
-	public Sommets somm;
+	public Sommets somm1;
+	public Sommets somm2;
 	public Aretes aret;
 	
 	@Parameters
 	public static Collection<Object[]> jeuxTests(){
 		return Arrays.asList(new Object [][]
 				{
-					{new Sommets("A",grape),new Aretes("Coucou",grape)},
-					{new Sommets("B",grape),new Aretes("Salut",grape)}
+					{new Sommets("A",grape),new Sommets("B",grape),new Aretes("AB",grape)},
+					{new Sommets("B",grape),new Sommets("A",grape),new Aretes("BA",grape)}
 				}
 				);
 	}
 	
-	public GraphesTests(Sommets p_somm,Aretes p_arete){
-		somm=p_somm;
+	public GraphesTests(Sommets p_somm1,Sommets p_somm2,Aretes p_arete){
+		somm1=p_somm1;
+		somm2=p_somm2;
 		aret=p_arete;
 	}
 	
 	@Test
 	public void testAddSommet(){
-		grape.addSommet(somm);
-		assertEquals(somm.getSommet_dans().nom_graphe,grape.nom_graphe);
+		grape.addSommet(somm1);
+		assertEquals(somm1.getSommet_dans().nom_graphe,grape.nom_graphe);
 	}
 	
 	@Test
 	public void testAddArete(){
 		try {
-			grape.addArete(aret);
+			grape.addArete(aret,somm1,somm2);
 		} catch (ChimereException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,8 +66,8 @@ public class GraphesTests {
 	
 	@Test
 	public void testDeleteSommet(){
-		grape.deleteSommet(somm);
-		assertNull(somm.getSommet_dans());
+		grape.deleteSommet(somm1);
+		assertNull(somm1.getSommet_dans());
 	}
 	
 	@Test

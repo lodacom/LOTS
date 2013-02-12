@@ -19,32 +19,34 @@ public class MoleculesTests {
 
 	public static Molecules mol=new Molecules("virus");
 	public Liaisons lien;
-	public Atomes ato;
+	public Atomes ato1;
+	public Atomes ato2;
 	
 	@Parameters
 	public static Collection<Object[]> jeuxTests(){
 		return Arrays.asList(new Object [][]
 				{
-					{new Atomes("A",mol),new Liaisons("Coucou",mol)}
+					{new Atomes("A",mol),new Atomes("B",mol),new Liaisons("AB",mol)}
 				}
 				);
 	}
 	
-	public MoleculesTests(Atomes p_ato,Liaisons p_lien){
-		ato=p_ato;
+	public MoleculesTests(Atomes p_ato1,Atomes p_ato2,Liaisons p_lien){
+		ato1=p_ato1;
+		ato2=p_ato2;
 		lien=p_lien;
 	}
 	
 	@Test
 	public void testAddAtome() {
-		mol.addSommet(ato);
-		assertEquals(ato.getSommet_dans().nom_graphe,mol.nom_graphe);
+		mol.addSommet(ato1);
+		assertEquals(ato1.getSommet_dans().nom_graphe,mol.nom_graphe);
 	}
 	
 	@Test
 	public void testAddLiaison(){
 		try {
-			mol.addArete(lien);
+			mol.addArete(lien,ato1,ato2);
 		} catch (ChimereException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
