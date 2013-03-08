@@ -13,17 +13,19 @@ import projet.exceptions.ChimereException;
  * @version 1.0
  */
 public class Graphes {
-	public String nom_graphe = "";
+	public String nom_graphe;
 	public HashSet<Sommets> sommets;
 	public HashSet<Aretes> aretes;
+	public static int num;
 	
 	/**
 	 * Constructeur de base. On est obligé de donner un nom
 	 * au graphe.
 	 * @param p_nom
 	 */
-	public Graphes(String p_nom){
-		nom_graphe=p_nom;
+	public Graphes(){
+		num++;
+		nom_graphe="G"+num;
 		sommets=new HashSet<Sommets>();
 		aretes=new HashSet<Aretes>();
 	}
@@ -69,28 +71,103 @@ public class Graphes {
 	}
 	
 	public String toString(){
-		return "Le graphe "+nom_graphe+" est composé des sommets:"+listeSommets()+
-				"et des arêtes:"+listeAretes();
+		return "Le graphe "+nom_graphe+" est composé des sommets:\n"+listeSommets()+
+				"et des arêtes:\n"+listeAretes();
+	}
+	
+	/**
+	 * Fonction permettant de créer un sommet puis de
+	 * l'ajouter dans le graphe
+	 */
+	public void createSommet(){
+		Sommets s=new Sommets();
+		try {
+			addSommet(s);
+		} catch (ChimereException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void createArete(Sommets p_somm1,Sommets p_somm2) throws ChimereException{
+		Aretes a=new Aretes();
+		try {
+			addArete(a,p_somm1,p_somm2);
+		} catch (ChimereException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * Permet d'ajouter une arête dans le graphe
-	 * @param p_arete
+	 * avec les deux sommets
+	 * @param p_arete l'arête que l'on ajoute au graphe
+	 * @throws ChimereException 
+	 * @deprecated
+	 */
+	public void addArete(Aretes p_arete) throws ChimereException{
+		/*
+		 * (nbr-sommets*(nbr-sommets-1))/2=nbr-aretes
+		 */
+		if (p_arete.getArete_dans()==null){
+			p_arete.setArete_dans(this);
+		}
+		//on ajoute l'arête dans le graphe
+		aretes.add(p_arete);
+	}
+	
+	/**
+	 * Permet d'ajouter une arête dans le graphe
+	 * avec les deux sommets
+	 * @param p_arete l'arête que l'on ajoute au graphe
+	 * @param p_somm1 le premier sommet de l'arête
+	 * @param p_somm2 le deuxième sommet de l'arête
 	 * @throws ChimereException 
 	 */
 	public void addArete(Aretes p_arete,Sommets p_somm1,Sommets p_somm2) throws ChimereException{
 		/*
 		 * (nbr-sommets*(nbr-sommets-1))/2=nbr-aretes
 		 */
+		if (p_arete.getArete_dans()==null){
+			p_arete.setArete_dans(this);
+		}
+		p_arete.setSommets(p_somm1, p_somm2);
+		p_somm1.setSommet_dans(this);
+		p_somm2.setSommet_dans(this);
+		p_somm1.addArete(p_arete);
+		p_somm2.addArete(p_arete);
+		//on ajoute l'arête dans le graphe
 		aretes.add(p_arete);
-		
+		//on ajoute les sommets dans le graphe
+		sommets.add(p_somm1);
+		sommets.add(p_somm2);
 	}
 	
 	/**
-	 * Permet d'ajouter un sommet dans le graphe
-	 * @param p_sommets
+	 * Permet d'ajouter un sommet dans le graphe avec son arête incidente
+	 * @param p_sommets le sommet que l'on ajoute au graphe
+	 * @param p_aret_incidents l'arête incidente au sommet
+	 * @throws ChimereException 
+	 * @deprecated
 	 */
-	public void addSommet(Sommets p_sommets){
+	public void addSommet(Sommets p_sommets,Aretes p_aret) throws ChimereException{
+		if (p_sommets.getSommet_dans()==null){
+			p_sommets.setSommet_dans(this);
+		}
+		p_sommets.addArete(p_aret);
+		sommets.add(p_sommets);
+	}
+	
+	/**
+	 * Permet d'ajouter un sommet au graphe sans arête incidente
+	 * @param p_sommets le sommet que l'on ajoute au graphe
+	 * @throws ChimereException 
+	 */
+	public void addSommet(Sommets p_sommets) throws ChimereException{
+		if (p_sommets.getSommet_dans()==null){
+			p_sommets.setSommet_dans(this);
+		}
 		sommets.add(p_sommets);
 	}
 	
@@ -101,8 +178,10 @@ public class Graphes {
 	 */
 	public Aretes deleteArete(Aretes p_arete){
 		if (aretes.remove(p_arete)){
-			p_arete.setArete_dans(null);
 			//l'arête ne référence plus le graphe
+			p_arete.setArete_dans(null);
+			//l'arête ne référence plus ses deux sommets
+			p_arete.setSommets(null, null);
 			return p_arete;
 		}else{
 			return null;
@@ -118,6 +197,12 @@ public class Graphes {
 		if (sommets.remove(p_sommet)){
 			p_sommet.setSommet_dans(null);
 			//le sommet ne référence plus le graphe
+			//il faut maintenant supprimer toutes les aretes incidentes
+			//du graphe
+			Iterator<Aretes> i = p_sommet.aret_incidents.iterator();
+			while (i.hasNext()){
+				deleteArete(i.next());
+			}
 			return p_sommet;
 		}else{
 			return null;

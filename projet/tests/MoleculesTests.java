@@ -17,7 +17,7 @@ import projet.molecules.Molecules;
 @RunWith(Parameterized.class)
 public class MoleculesTests {
 
-	public static Molecules mol=new Molecules("virus");
+	public static Molecules mol=new Molecules();
 	public Liaisons lien;
 	public Atomes ato1;
 	public Atomes ato2;
@@ -26,7 +26,11 @@ public class MoleculesTests {
 	public static Collection<Object[]> jeuxTests(){
 		return Arrays.asList(new Object [][]
 				{
-					{new Atomes("A",mol),new Atomes("B",mol),new Liaisons("AB",mol)}
+					{
+						new Atomes(mol),
+						new Atomes(mol),
+						new Liaisons(mol,new Atomes(mol),new Atomes(mol))
+					}
 				}
 				);
 	}
@@ -45,12 +49,7 @@ public class MoleculesTests {
 	
 	@Test
 	public void testAddLiaison(){
-		try {
-			mol.addArete(lien,ato1,ato2);
-		} catch (ChimereException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		mol.addArete(lien);
 		assertEquals(lien.getArete_dans().nom_graphe,mol.nom_graphe);
 	}
 	

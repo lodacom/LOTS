@@ -3,6 +3,8 @@ package projet.exceptions;
 import projet.Aretes;
 import projet.Graphes;
 import projet.Sommets;
+import projet.info.Noeuds;
+import projet.molecules.Atomes;
 
 @SuppressWarnings("serial")
 /**
@@ -17,6 +19,8 @@ public class ChimereException extends Exception {
 	Aretes aret;
 	Sommets somm;
 	
+	Atomes ato;
+	Noeuds noeud;
 	/**
 	 * Constructeur pour détecter la construction d'une
 	 * chimère côté Aretes
@@ -39,6 +43,16 @@ public class ChimereException extends Exception {
 		somm=p_somm;
 	}
 	
+	public ChimereException(Atomes atomes, Aretes p_aret) {
+		ato=atomes;
+		aret=p_aret;
+	}
+
+	public ChimereException(Noeuds noeuds, Aretes p_aret) {
+		noeud=noeuds;
+		aret=p_aret;
+	}
+
 	/**
 	 * On surchage la méthode getMessage présente dans la classe
 	 * Throwable

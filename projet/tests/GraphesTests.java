@@ -21,7 +21,7 @@ import projet.exceptions.ChimereException;
 @RunWith(Parameterized.class)
 public class GraphesTests {
 
-	public static Graphes grape=new Graphes("essai");
+	public static Graphes grape=new Graphes();
 	public Sommets somm1;
 	public Sommets somm2;
 	public Aretes aret;
@@ -30,8 +30,16 @@ public class GraphesTests {
 	public static Collection<Object[]> jeuxTests(){
 		return Arrays.asList(new Object [][]
 				{
-					{new Sommets("A",grape),new Sommets("B",grape),new Aretes("AB",grape)},
-					{new Sommets("B",grape),new Sommets("A",grape),new Aretes("BA",grape)}
+					{
+						new Sommets(grape),
+						new Sommets(grape),
+						new Aretes(grape,new Sommets(grape),new Sommets(grape))
+					},
+					{
+						new Sommets(grape),
+						new Sommets(grape),
+						new Aretes(grape,new Sommets(grape),new Sommets(grape))
+					}
 				}
 				);
 	}
@@ -44,7 +52,12 @@ public class GraphesTests {
 	
 	@Test
 	public void testAddSommet(){
-		grape.addSommet(somm1);
+		try {
+			grape.addSommet(somm1);
+		} catch (ChimereException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(somm1.getSommet_dans().nom_graphe,grape.nom_graphe);
 	}
 	
@@ -66,13 +79,13 @@ public class GraphesTests {
 	
 	@Test
 	public void testDeleteSommet(){
-		grape.deleteSommet(somm1);
+		assertNotNull(grape.deleteSommet(somm1));
 		assertNull(somm1.getSommet_dans());
 	}
 	
 	@Test
 	public void testDeleteArete(){
-		grape.deleteArete(aret);
+		assertNotNull(grape.deleteArete(aret));
 		assertNull(aret.getArete_dans());
 	}
 }
