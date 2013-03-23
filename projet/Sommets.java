@@ -5,10 +5,12 @@ import java.util.HashSet;
 import projet.exceptions.ChimereException;
 
 /**
- * @author Lolo
- * @version 1.0
+ * <pre>
  * Classe permettant de créer des sommets et de les associer 
  * avec un graphe.
+ * </pre>
+ * @author Lolo
+ * @version 1.0
  */
 public class Sommets {
 	public String nom_sommet;

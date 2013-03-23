@@ -1,10 +1,12 @@
 package projet;
 
 /**
- * @author Lolo
- * @version 1.0
+ * <pre>
  * Classe permettant de créer des arêtes
  * et les associer avec un graphe.
+ * </pre>
+ * @author Lolo
+ * @version 1.0
  */
 public class Aretes {
 	public String nom_arete;

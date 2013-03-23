@@ -22,6 +22,31 @@ public class Molecules extends Graphes {
 				super.listeSommets()+"et des liaisons: "+super.listeAretes();
 	}
 	
+	public void createSommet(){
+		Atomes a=new Atomes();
+		addSommet(a);
+	}
+	
+	public void createArete(Sommets p_somm1,Sommets p_somm2) throws ChimereException{
+		Liaisons l=new Liaisons();
+		if((p_somm1 instanceof Atomes) &&
+			(p_somm2 instanceof Atomes)){
+			addArete(l,p_somm1,p_somm2);
+		}else{
+			throw new ChimereException(this,p_somm1);
+		}
+	}
+	
+	public void createArete(Atomes p_somm1,Atomes p_somm2){
+		Liaisons l=new Liaisons();
+		try {
+			addArete(l,p_somm1,p_somm2);
+		} catch (ChimereException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void addArete(Liaisons p_aret){
 		try {
 			super.addArete(p_aret);

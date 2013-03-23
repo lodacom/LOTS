@@ -6,9 +6,11 @@ import java.util.Iterator;
 import projet.exceptions.ChimereException;
 
 /**
+ * <pre>
  * Classe permettant de créer des graphes avec des sommmets
- * et des arêtes.
+ * et des arêtes. Va devoir hériter de InstanceGraphes
  * Fait sous Eclipse Juno et sous Mac OS X.
+ * </pre>
  * @author Lolo
  * @version 1.0
  */
