@@ -45,7 +45,7 @@ public class Graph
         this.vertice.remove(v);
     }
     
-    public void addEdge(Edge e, Vertex v1, Vertex v2) throws NotSameGraphException
+    public void addEdge(Edge e, Vertex v1, Vertex v2)
     {
             e.bindVertice(v1, v2);
             this.bindEdge(e);

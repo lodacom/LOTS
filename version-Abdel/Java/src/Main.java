@@ -1,6 +1,8 @@
+import maths.Edge;
+import maths.Graph;
+import maths.Vertex;
 import chemistry.Atom;
-import exceptions.NotSameGraphException;
-import maths.*;
+
 
 public class Main
 {
@@ -13,16 +15,9 @@ public class Main
         g.addVertex(v1);
         g.addVertex(v2);
 
-        try
-        {
-            Edge e1 = new Edge(v1, v2);
-            //g.removeEdge(e1);
-        }
-        catch (NotSameGraphException e)
-        {
-            e.printStackTrace();
-        }
-        
+        Edge e1 = new Edge(v1, v2);
+        //g.removeEdge(e1);
+                
         //g.removeVertex(v1);
         
         System.out.println(g);

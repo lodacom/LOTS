@@ -6,7 +6,7 @@ import exceptions.NotSameGraphException;
  * Invariants 
  * - x et y sont nuls tout les deux
  * - x et y sont non nuls tout les deux
- * - x, y et this sont dans le même graphe
+ * - x, y et this sont dans le mÔøΩme graphe
  */
 public class Edge
 {
@@ -17,7 +17,7 @@ public class Edge
     public Edge()
     {}
     
-    public Edge(Vertex v1, Vertex v2) throws NotSameGraphException
+    public Edge(Vertex v1, Vertex v2)
     {
         this.bindVertice(v1, v2);
     }
@@ -26,18 +26,25 @@ public class Edge
     {     
         this.graph = null;
         
-        // On quitte le graphe, on ne référence donc plus les sommets x et y.
+        // On quitte le graphe, on ne rÔøΩfÔøΩrence donc plus les sommets x et y.
         unbindVertice();
     }
     
-    public void bindVertice(Vertex v1, Vertex v2) throws NotSameGraphException
+    public void bindVertice(Vertex v1, Vertex v2)
     {
-        if (!v1.sameGraphAs(v2) || v1.getGraph() == null || v2.getGraph() == null)
-            throw new NotSameGraphException("Les 2 sommets ne sont pas dans le même graphe."); 
-        
-        if (!this.sameGraphAs(v2) && graph != null)
-            throw new NotSameGraphException("L'arete n'est pas dans le même graphe que les 2 sommets.");
-        
+    	try
+    	{
+	        if (!v1.sameGraphAs(v2) || v1.getGraph() == null || v2.getGraph() == null)
+	            throw new NotSameGraphException("Les 2 sommets ne sont pas dans le mÔøΩme graphe."); 
+	        
+	        if (!this.sameGraphAs(v2) && graph != null)
+	            throw new NotSameGraphException("L'arete n'est pas dans le mÔøΩme graphe que les 2 sommets.");
+    	}
+    	catch (NotSameGraphException e)
+    	{
+    		e.printStackTrace();
+    	}
+    	
         // Tout va bien on peut y aller.
         
         if (graph == null)

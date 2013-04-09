@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 /*
  * Invariants
- * - les aretes incidentes sont dans le mme graphe que this
+ * - les aretes incidentes sont dans le mï¿½me graphe que this
  */
 public class Vertex
 {
