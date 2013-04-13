@@ -1,5 +1,6 @@
 package maths;
 
+import exceptions.ChimereException;
 import exceptions.NotSameGraphException;
 
 /*
@@ -25,7 +26,7 @@ public class Edge
     {
         this.graph = null;
 
-        // On quitte le graphe, on ne rÔøΩfÔøΩrence donc plus les sommets x et
+        // On quitte le graphe, on ne référence donc plus les sommets x et
         // y.
         unbindVertice();
     }
@@ -42,8 +43,10 @@ public class Edge
             if (!this.sameGraphAs(v2) && graph != null)
                 throw new NotSameGraphException(
                         "L'arete n'est pas dans le même graphe que les 2 sommets.");
+            
+            checkTypesBeforeBinding(v1, v2);
         }
-        catch (NotSameGraphException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -61,6 +64,12 @@ public class Edge
 
         v1.bindEdge(this);
         v2.bindEdge(this);
+    }
+
+    protected void checkTypesBeforeBinding(Vertex v1, Vertex v2) throws ChimereException
+    {
+        if (!(v1 instanceof Vertex && v2 instanceof Vertex))
+            throw new ChimereException("Il me faut des sommets pas des cacahuètes");
     }
 
     private boolean sameGraphAs(Vertex v)

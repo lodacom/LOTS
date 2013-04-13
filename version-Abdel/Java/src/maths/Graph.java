@@ -23,6 +23,7 @@ public class Graph
 
     public void addVertex(Vertex v)
     {
+        
         this.vertice.add(v);
         v.bindGraph(this);
     }

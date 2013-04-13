@@ -15,7 +15,8 @@ public class Molecule extends Graph
     {
         super.addVertex(a);
     }
-
+    
+    @Override
     public void addVertex(Vertex v)
     {
         try
@@ -28,6 +29,7 @@ public class Molecule extends Graph
         }
     }
 
+    @Override
     public void addEdge(Edge a, Vertex v1, Vertex v2)
     {
         try
