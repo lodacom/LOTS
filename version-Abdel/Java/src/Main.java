@@ -2,6 +2,7 @@ import maths.Edge;
 import maths.Graph;
 import maths.Vertex;
 import chemistry.Atom;
+import chemistry.Molecule;
 
 
 public class Main
@@ -15,10 +16,13 @@ public class Main
         g.addVertex(v1);
         g.addVertex(v2);
 
-        Edge e1 = new Edge(v1, v2);
-        //g.removeEdge(e1);
-                
-        //g.removeVertex(v1);
+        new Edge(v1, v2); // est ajouté à g automatiquement.
+        
+        
+        Molecule m = new Molecule("M1");
+        
+        
+        
         
         System.out.println(g);
     }
