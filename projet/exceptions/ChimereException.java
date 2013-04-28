@@ -3,6 +3,7 @@ package projet.exceptions;
 import projet.Aretes;
 import projet.Graphes;
 import projet.Sommets;
+import projet.info.Liens;
 import projet.info.Noeuds;
 import projet.molecules.Atomes;
 
@@ -21,6 +22,7 @@ public class ChimereException extends Exception {
 	
 	Atomes ato;
 	Noeuds noeud;
+	Liens lien;
 	/**
 	 * Constructeur pour détecter la construction d'une
 	 * chimère côté Aretes
@@ -52,6 +54,12 @@ public class ChimereException extends Exception {
 		noeud=noeuds;
 		aret=p_aret;
 	}
+
+	public ChimereException(Noeuds noeuds, Liens l) {
+		noeud=noeuds;
+		lien=l;
+	}
+
 
 	/**
 	 * On surchage la méthode getMessage présente dans la classe

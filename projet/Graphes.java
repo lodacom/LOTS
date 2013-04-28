@@ -77,6 +77,34 @@ public class Graphes {
 				"et des arêtes:\n"+listeAretes();
 	}
 	
+	public String descriptionGraphe(){
+		String ret="";
+		if (sommets.size()==0){
+			return "Le graphe est vide";
+		}else{
+			Iterator<Sommets> i = sommets.iterator();
+			while (i.hasNext()){
+				Sommets somm=i.next();
+				ret += somm.toString()+" est relié à:\n"+sommetLinkedTo(somm);
+			}
+		}
+	    return ret;
+	}
+	
+	public String sommetLinkedTo(Sommets p_sommet){
+	    String ret="";
+	    Iterator<Aretes> i=p_sommet.aret_incidents.iterator();
+	    while (i.hasNext()){
+	    	Aretes aret=i.next();
+	        if (aret.somm1.nom_sommet!=p_sommet.nom_sommet){
+	            ret+=aret.somm1.toString()+"\n";
+	        }else{
+	            ret+=aret.somm2.toString()+"\n";
+	        }
+	    }
+	    return ret;
+	}
+	
 	/**
 	 * Fonction permettant de créer un sommet puis de
 	 * l'ajouter dans le graphe
@@ -134,11 +162,11 @@ public class Graphes {
 		if (p_arete.getArete_dans()==null){
 			p_arete.setArete_dans(this);
 		}
-		p_arete.setSommets(p_somm1, p_somm2);
 		p_somm1.setSommet_dans(this);
 		p_somm2.setSommet_dans(this);
 		p_somm1.addArete(p_arete);
 		p_somm2.addArete(p_arete);
+		p_arete.setSommets(p_somm1, p_somm2);
 		//on ajoute l'arête dans le graphe
 		aretes.add(p_arete);
 		//on ajoute les sommets dans le graphe
