@@ -1,7 +1,5 @@
 package projet.info;
 
-import java.util.HashSet;
-
 import projet.Aretes;
 import projet.Graphes;
 import projet.Sommets;
@@ -14,10 +12,6 @@ public class Reseaux extends Graphes {
 	public Reseaux() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	
-	public Reseaux(String p_nom,HashSet<Sommets> p_sommets,HashSet<Aretes> p_aretes){
-		super(p_nom, p_sommets, p_aretes);
 	}
 	
 	public String toString(){

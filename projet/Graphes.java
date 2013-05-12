@@ -32,12 +32,6 @@ public class Graphes {
 		aretes=new HashSet<Aretes>();
 	}
 	
-	public Graphes(String p_nom,HashSet<Sommets> p_sommets,HashSet<Aretes> p_aretes){
-		nom_graphe=p_nom;
-		sommets=p_sommets;
-		aretes=p_aretes;
-	}
-	
 	/**
 	 * @return la liste des sommets appartenant
 	 * au graphe. Sinon retourne "aucun sommet"

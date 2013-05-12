@@ -3,6 +3,8 @@ package projet.generics;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import projet.Aretes;
+import projet.Sommets;
 import projet.exceptions.ChimereException;
 
 /**
@@ -75,6 +77,34 @@ public abstract class GenericGraphes <G extends GenericGraphes<G,S,A>,S extends 
 	public String toString(){
 		return "Le graphe "+nom_graphe+" est composé des sommets:\n"+listeSommets()+
 				"et des arêtes:\n"+listeAretes();
+	}
+	
+	public String descriptionGraphe(){
+		String ret="";
+		if (sommets.size()==0){
+			return "Le graphe est vide";
+		}else{
+			Iterator<S> i = sommets.iterator();
+			while (i.hasNext()){
+				S somm=i.next();
+				ret += somm.toString()+" est relié à:\n"+sommetLinkedTo(somm);
+			}
+		}
+	    return ret;
+	}
+	
+	public String sommetLinkedTo(S p_sommet){
+	    String ret="";
+	    Iterator<A> i=p_sommet.aret_incidents.iterator();
+	    while (i.hasNext()){
+	    	A aret=i.next();
+	        if (aret.somm1.nom_sommet!=p_sommet.nom_sommet){
+	            ret+=aret.somm1.toString()+"\n";
+	        }else{
+	            ret+=aret.somm2.toString()+"\n";
+	        }
+	    }
+	    return ret;
 	}
 	
 	/**

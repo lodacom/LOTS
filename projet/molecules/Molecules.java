@@ -1,7 +1,5 @@
 package projet.molecules;
 
-import java.util.HashSet;
-
 import projet.Aretes;
 import projet.Graphes;
 import projet.Sommets;
@@ -11,10 +9,6 @@ public class Molecules extends Graphes {
 
 	public Molecules() {
 		super();
-	}
-	
-	public Molecules(String p_nom,HashSet<Sommets> p_sommets,HashSet<Aretes> p_aretes){
-		super(p_nom, p_sommets, p_aretes);
 	}
 	
 	public String toString(){
