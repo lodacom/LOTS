@@ -27,7 +27,7 @@ public class Molecules extends Graphes {
 			(p_somm2 instanceof Atomes)){
 			addArete(l,p_somm1,p_somm2);
 		}else{
-			throw new ChimereException(this,p_somm1);
+			throw new ChimereException();
 		}
 	}
 	
@@ -64,7 +64,7 @@ public class Molecules extends Graphes {
 					(Atomes) p_somm1,
 					(Atomes) p_somm2);
 		}else{
-			throw new ChimereException(this,p_aret);
+			throw new ChimereException();
 		}
 	}
 	
@@ -86,7 +86,7 @@ public class Molecules extends Graphes {
 				(p_aret instanceof Liaisons)){
 			super.addSommet((Atomes)p_somm,(Liaisons)p_aret);
 		}else{
-			throw new ChimereException(this,p_somm);
+			throw new ChimereException();
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class Molecules extends Graphes {
 		if (p_somm instanceof Atomes){
 			super.addSommet((Atomes)p_somm);
 		}else{
-			throw new ChimereException(this,p_somm);
+			throw new ChimereException();
 		}
 	}
 	

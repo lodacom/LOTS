@@ -39,7 +39,7 @@ public class Reseaux extends Graphes {
 			(p_somm2 instanceof Noeuds)){
 			super.addArete(l, (Noeuds)p_somm1, (Noeuds)p_somm2);
 		}else{
-			throw new ChimereException(this,p_somm1);
+			throw new ChimereException();
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class Reseaux extends Graphes {
 					(Noeuds) p_somm1,
 					(Noeuds) p_somm2);
 		}else{
-			throw new ChimereException(this,p_aret);
+			throw new ChimereException();
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class Reseaux extends Graphes {
 				(p_aret instanceof Liens)){
 			super.addSommet((Noeuds)p_somm,(Liens)p_aret);
 		}else{
-			throw new ChimereException(this,p_somm);
+			throw new ChimereException();
 		}
 	}
 	
@@ -106,7 +106,7 @@ public class Reseaux extends Graphes {
 		if (p_somm instanceof Noeuds){
 			super.addSommet((Noeuds)p_somm);
 		}else{
-			throw new ChimereException(this,p_somm);
+			throw new ChimereException();
 		}
 	}
 	

@@ -23,8 +23,8 @@ public class Liaisons extends Aretes {
 	}
 	
 	public void setSommets(Sommets p_somm1,Sommets p_somm2){
-		if ((p_somm1 instanceof Sommets) &&
-			(p_somm2 instanceof Sommets)){
+		if ((p_somm1 instanceof Atomes) &&
+			(p_somm2 instanceof Atomes)){
 			super.setSommets((Atomes)p_somm1, (Atomes)p_somm2);
 		}
 	}

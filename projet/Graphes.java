@@ -8,8 +8,8 @@ import projet.exceptions.ChimereException;
 /**
  * <pre>
  * Classe permettant de créer des graphes avec des sommmets
- * et des arêtes. Va devoir hériter de InstanceGraphes
- * Fait sous Eclipse Juno et sous Mac OS X.
+ * et des arêtes.
+ * Fait sous Eclipse Juno avec Java version 7 et sous Mac OS X.
  * </pre>
  * @author Lolo
  * @version 1.0
@@ -23,7 +23,6 @@ public class Graphes {
 	/**
 	 * Constructeur de base. On est obligé de donner un nom
 	 * au graphe.
-	 * @param p_nom
 	 */
 	public Graphes(){
 		num++;
@@ -71,6 +70,11 @@ public class Graphes {
 				"et des arêtes:\n"+listeAretes();
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @return une description détaillée du graphe (quel sommet est relié à quel sommet)
+	 */
 	public String descriptionGraphe(){
 		String ret="";
 		if (sommets.size()==0){
@@ -85,6 +89,11 @@ public class Graphes {
 	    return ret;
 	}
 	
+	/**
+	 * 
+	 * @param p_sommet le sommet gauche ou droit
+	 * @return le sommet droit si sommet gauche passé en param. Sinon sommet gauche.
+	 */
 	public String sommetLinkedTo(Sommets p_sommet){
 	    String ret="";
 	    Iterator<Aretes> i=p_sommet.aret_incidents.iterator();
@@ -134,11 +143,12 @@ public class Graphes {
 		/*
 		 * (nbr-sommets*(nbr-sommets-1))/2=nbr-aretes
 		 */
-		if (p_arete.getArete_dans()==null){
+		if (p_arete.getArete_dans()==null ||
+				!aretes.contains(p_arete)){
 			p_arete.setArete_dans(this);
+			//on ajoute l'arête dans le graphe
+			aretes.add(p_arete);
 		}
-		//on ajoute l'arête dans le graphe
-		aretes.add(p_arete);
 	}
 	
 	/**
@@ -153,19 +163,20 @@ public class Graphes {
 		/*
 		 * (nbr-sommets*(nbr-sommets-1))/2=nbr-aretes
 		 */
-		if (p_arete.getArete_dans()==null){
+		if (p_arete.getArete_dans()==null ||
+			!aretes.contains(p_arete)){
 			p_arete.setArete_dans(this);
+			p_somm1.setSommet_dans(this);
+			p_somm2.setSommet_dans(this);
+			p_somm1.addArete(p_arete);
+			p_somm2.addArete(p_arete);
+			p_arete.setSommets(p_somm1, p_somm2);
+			//on ajoute l'arête dans le graphe
+			aretes.add(p_arete);
+			//on ajoute les sommets dans le graphe
+			sommets.add(p_somm1);
+			sommets.add(p_somm2);
 		}
-		p_somm1.setSommet_dans(this);
-		p_somm2.setSommet_dans(this);
-		p_somm1.addArete(p_arete);
-		p_somm2.addArete(p_arete);
-		p_arete.setSommets(p_somm1, p_somm2);
-		//on ajoute l'arête dans le graphe
-		aretes.add(p_arete);
-		//on ajoute les sommets dans le graphe
-		sommets.add(p_somm1);
-		sommets.add(p_somm2);
 	}
 	
 	/**
@@ -176,11 +187,12 @@ public class Graphes {
 	 * @deprecated
 	 */
 	public void addSommet(Sommets p_sommets,Aretes p_aret) throws ChimereException{
-		if (p_sommets.getSommet_dans()==null){
+		if (p_sommets.getSommet_dans()==null ||
+			!sommets.contains(p_sommets)){
 			p_sommets.setSommet_dans(this);
+			p_sommets.addArete(p_aret);
+			sommets.add(p_sommets);
 		}
-		p_sommets.addArete(p_aret);
-		sommets.add(p_sommets);
 	}
 	
 	/**
@@ -189,10 +201,11 @@ public class Graphes {
 	 * @throws ChimereException 
 	 */
 	public void addSommet(Sommets p_sommets) throws ChimereException{
-		if (p_sommets.getSommet_dans()==null){
+		if (p_sommets.getSommet_dans()==null ||
+			!sommets.contains(p_sommets)){
 			p_sommets.setSommet_dans(this);
+			sommets.add(p_sommets);
 		}
-		sommets.add(p_sommets);
 	}
 	
 	/**

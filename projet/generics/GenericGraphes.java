@@ -126,11 +126,12 @@ public abstract class GenericGraphes <G extends GenericGraphes<G,S,A>,S extends 
 		/*
 		 * (nbr-sommets*(nbr-sommets-1))/2=nbr-aretes
 		 */
-		if (p_arete.getArete_dans()==null){
+		if (p_arete.getArete_dans()==null ||
+				!aretes.contains(p_arete)){
 			p_arete.setArete_dans((G) this);
+			//on ajoute l'arête dans le graphe
+			aretes.add(p_arete);
 		}
-		//on ajoute l'arête dans le graphe
-		aretes.add(p_arete);
 	}
 	
 	/**
@@ -145,19 +146,20 @@ public abstract class GenericGraphes <G extends GenericGraphes<G,S,A>,S extends 
 		/*
 		 * (nbr-sommets*(nbr-sommets-1))/2=nbr-aretes
 		 */
-		if (p_arete.getArete_dans()==null){
+		if (p_arete.getArete_dans()==null ||
+			!aretes.contains(p_arete)){
 			p_arete.setArete_dans((G) this);
+			p_arete.setSommets(p_somm1, p_somm2);
+			p_somm1.setSommet_dans((G) this);
+			p_somm2.setSommet_dans((G) this);
+			p_somm1.addArete(p_arete);
+			p_somm2.addArete(p_arete);
+			//on ajoute l'arête dans le graphe
+			aretes.add(p_arete);
+			//on ajoute les sommets dans le graphe
+			sommets.add(p_somm1);
+			sommets.add(p_somm2);
 		}
-		p_arete.setSommets(p_somm1, p_somm2);
-		p_somm1.setSommet_dans((G) this);
-		p_somm2.setSommet_dans((G) this);
-		p_somm1.addArete(p_arete);
-		p_somm2.addArete(p_arete);
-		//on ajoute l'arête dans le graphe
-		aretes.add(p_arete);
-		//on ajoute les sommets dans le graphe
-		sommets.add(p_somm1);
-		sommets.add(p_somm2);
 	}
 	
 	/**
@@ -168,11 +170,12 @@ public abstract class GenericGraphes <G extends GenericGraphes<G,S,A>,S extends 
 	 * @deprecated
 	 */
 	public void addSommet(S p_sommets,A p_aret) throws ChimereException{
-		if (p_sommets.getSommet_dans()==null){
+		if (p_sommets.getSommet_dans()==null ||
+				!sommets.contains(p_sommets)){
 			p_sommets.setSommet_dans((G) this);
+			p_sommets.addArete(p_aret);
+			sommets.add(p_sommets);
 		}
-		p_sommets.addArete(p_aret);
-		sommets.add(p_sommets);
 	}
 	
 	/**
@@ -181,10 +184,11 @@ public abstract class GenericGraphes <G extends GenericGraphes<G,S,A>,S extends 
 	 * @throws ChimereException 
 	 */
 	public void addSommet(S p_sommets) throws ChimereException{
-		if (p_sommets.getSommet_dans()==null){
+		if (p_sommets.getSommet_dans()==null ||
+				!sommets.contains(p_sommets)){
 			p_sommets.setSommet_dans((G) this);
+			sommets.add(p_sommets);
 		}
-		sommets.add(p_sommets);
 	}
 	
 	/**

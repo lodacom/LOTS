@@ -21,7 +21,7 @@ public class Atomes extends Sommets {
 			p_somm2.addArete(l);
 			l.setSommets(this, p_somm2);
 		}else{
-			throw new ChimereException(this,l);
+			throw new ChimereException();
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class Atomes extends Sommets {
 		if (p_aret instanceof Liaisons){
 			super.addArete((Liaisons)p_aret);
 		}else{
-			throw new ChimereException(this,p_aret);
+			throw new ChimereException();
 		}
 	}
 	

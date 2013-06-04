@@ -25,8 +25,8 @@ public class Liens extends Aretes {
 	}
 	
 	public void setSommets(Sommets p_somm1,Sommets p_somm2){
-		if ((p_somm1 instanceof Sommets) &&
-			(p_somm2 instanceof Sommets)){
+		if ((p_somm1 instanceof Noeuds) &&
+			(p_somm2 instanceof Noeuds)){
 			super.setSommets((Noeuds)p_somm1, (Noeuds)p_somm2);
 		}
 	}

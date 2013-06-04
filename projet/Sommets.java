@@ -20,7 +20,6 @@ public class Sommets {
 	
 	/**
 	 * Constructeur de base. On donne un nom
-	 * @param p_nom_sommet
 	 */
 	public Sommets(){
 		num++;

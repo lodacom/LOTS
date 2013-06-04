@@ -17,7 +17,6 @@ public class Aretes {
 	
 	/**
 	 * Constructeur de base. On donne un nom à l'arête.
-	 * @param p_nom_arete
 	 */
 	public Aretes(){
 		num++;

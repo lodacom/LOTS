@@ -16,16 +16,17 @@ public class MainTests {
 		// TODO Auto-generated method stub
 		Graphes grape=new Graphes();
 		Sommets p_somm1=new Sommets();
-		Sommets p_somm2=new Sommets();
+		Sommets p_somm2=new Atomes();
 		Sommets p_somm3=new Sommets();
-		Aretes p_arete=new Aretes(grape,p_somm1,p_somm2);
-		Aretes p_arete2=new Aretes(grape,p_somm1,p_somm3);
-		Aretes p_arete3=new Aretes(grape,p_somm2,p_somm3);
+		Aretes p_arete=new Aretes();
+		Aretes p_arete2=new Aretes();
+		Aretes p_arete3=new Aretes();
 		
 		try {
-			grape.addArete(p_arete,p_somm1,p_somm2);
+			grape.addSommet(p_somm2);
+			//grape.addArete(p_arete,p_somm1,p_somm2);
 			grape.addArete(p_arete2,p_somm1,p_somm3);
-			grape.addArete(p_arete3,p_somm2,p_somm3);
+			//grape.addArete(p_arete3,p_somm2,p_somm3);
 		} catch (ChimereException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

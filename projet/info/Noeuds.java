@@ -23,7 +23,7 @@ public class Noeuds extends Sommets {
 			p_somm2.addArete(l);
 			l.setSommets(this, p_somm2);
 		}else{
-			throw new ChimereException(this,l);
+			throw new ChimereException();
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class Noeuds extends Sommets {
 		if (p_aret instanceof Liens){
 			super.addArete((Liens)p_aret);
 		}else{
-			throw new ChimereException(this,p_aret);
+			throw new ChimereException();
 		}
 	}
 	
